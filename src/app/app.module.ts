@@ -1,18 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CursosRoutingModule } from './cursos/cursos-routing.module';
+import { AlunosGuard } from './guards/alunos.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { CursosGuard } from './guards/cursos.guard';
+import { HomeComponent } from './home/home.component';
+import { AuthService } from './login/auth.service';
+import { LoginComponent } from './login/login.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    PaginaNaoEncontradaComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CursosRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+  AuthService,
+  AuthGuard,
+  CursosGuard,
+  AlunosGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
